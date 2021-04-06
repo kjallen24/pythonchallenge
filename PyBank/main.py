@@ -8,4 +8,10 @@
 import os
 import csv
 
-csvpath = os.path.join('Resources', '
+Budget_Data = os.path.join('Resources', 'Budget_Data.csv')
+with open(Budget_Data, 'r') as f:
+    budgetreader = csv.reader(f)
+    print(budgetreader)
+    for row in budgetreader:
+        print (row)
+

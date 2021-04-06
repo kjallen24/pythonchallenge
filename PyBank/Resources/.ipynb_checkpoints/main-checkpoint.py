@@ -5,18 +5,15 @@
 # The greatest increase in profits (date and amount) over the entire period
 # The greatest decrease in losses (date and amount) over the entire period
 
-import pandas as pd
+import os
+import csv
 
 print (os.getcwd())
 
-        
-        
-        #file_one_df= pd.read_csv
-
-        #Print("Financial Analysis")
-        #Print("-------------------")
-        #Print(f"Total Months {}")
-        #Print()
-        
-        
+Budget_Data = os.path.join('..','Resources', 'Budget_Data.csv')
+with open('Budget_Data', 'r') as f:
+    budgetreader = csv.reader(f)
+    print(budgetreader)
+    for row in budgetreader:
+        print (row)
 
