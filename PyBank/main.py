@@ -13,5 +13,6 @@ with open(Budget_Data, 'r') as f:
     budgetreader = csv.reader(f)
     print(budgetreader)
     for row in budgetreader:
+        if row == 2
         print (row)
 
