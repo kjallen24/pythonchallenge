@@ -10,19 +10,27 @@ import csv
 
 Budget_Data = os.path.join('Resources', 'Budget_Data.csv')
 
-def budgetanalysis(Budget_Data):
-
-    date = str(Budget_Data[0])
-    prftlss = int(Budget_Data[1])
-    ttlmonths = len(list(Budget_Data[0]))
-    avgchng = average(str(Budget_Data[0]))
-    for column in budgetreader:
-        print (ttlmonths)
-
-print(ttlmonths)
+Date = []
+PrtLss = []
 
 with open(Budget_Data, 'r') as f:
     budgetreader = csv.reader(f)
-    header = next(budgetreader)
     print(budgetreader)
+    for row in budgetreader:
+        print (row)
 
+Final_Analysis = zip(Date,TProfitLoss, PLAverage, Increase, Decrease)
+
+# Set variable for output file
+output_file = os.path.join("final_analysis.csv")
+
+#  Open the output file
+with open(output_file, "w", newline="") as datafile:
+    writer = csv.writer(datafile)
+
+    # Write the header row
+    writer.writerow(["Title", "Course Price", "Subscribers", "Reviews Left",
+                     "Percent of Reviews", "Length of Course"])
+
+    # Write in zipped rows
+    writer.writerows(cleaned_csv)
