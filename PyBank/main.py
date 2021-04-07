@@ -7,12 +7,19 @@
 
 import os
 import csv
+import sys
 
 Budget_Data = os.path.join('Resources', 'Budget_Data.csv')
+
+def budgetanalysis(sheet):
+    date = str(Budget_Data[0])
+    prftlss = int(Budget_Data[1])
+    total_net = count(str(Budget_Data))
+    avgchng = average(str(Budget_Data))
+
+
 with open(Budget_Data, 'r') as f:
     budgetreader = csv.reader(f)
     print(budgetreader)
-    for row in budgetreader:
-        if row == 2
-        print (row)
-
+    for column in budgetreader:
+            print (column)
