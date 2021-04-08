@@ -10,27 +10,23 @@ import csv
 
 Budget_Data = os.path.join('Resources', 'Budget_Data.csv')
 
-Date = []
-PrtLss = []
+with open(Budget_Data, 'r') as csvfile:
+    cvsreader = csv.reader(csvfile, delimiter=',')
+    lines = len(list(cvsreader))
+    print (lines-1)
 
-with open(Budget_Data, 'r') as f:
-    budgetreader = csv.reader(f)
-    print(budgetreader)
-    for row in budgetreader:
-        print (row)
-
-Final_Analysis = zip(Date,TProfitLoss, PLAverage, Increase, Decrease)
+#Final_Analysis = zip(Date,TProfitLoss, PLAverage, Increase, Decrease)
 
 # Set variable for output file
-output_file = os.path.join("final_analysis.csv")
+#output_file = os.path.join("final_analysis.csv")
 
 #  Open the output file
-with open(output_file, "w", newline="") as datafile:
-    writer = csv.writer(datafile)
+#with open(output_file, "w", newline="") as datafile:
+    #writer = csv.writer(datafile)
 
     # Write the header row
-    writer.writerow(["Title", "Course Price", "Subscribers", "Reviews Left",
-                     "Percent of Reviews", "Length of Course"])
+    #writer.writerow(["Title", "Course Price", "Subscribers", "Reviews Left",
+                     #"Percent of Reviews", "Length of Course"])
 
     # Write in zipped rows
-    writer.writerows(cleaned_csv)
+    #writer.writerows(cleaned_csv)
