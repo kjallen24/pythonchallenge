@@ -20,23 +20,22 @@ with open(Budget_Data) as financial_data:
     first_row = next(reader)
     #diff_list = []
     prev_net = int(first_row[1])
-    greatest = 0
-    least = 0  
+    greatest_increase = 0
+    greatest_decrease = 0  
     
     for i, row in enumerate(reader):
         months += 1
         net += int(row[1])     
         net_change = int(first_row[i + 1]) - prev_net
         average = net_change / 86
-        if prev_net > net_change:
-            
-        elif prev_net < net_change:
-            prev_net = least
+        if prev_net > greatest_increase[1]:
+            greatest_increase[0] = row [0]
+            greatest_increase[1] = net_change
+        elif prev_net < greatest_decrease[1]:
+            greatest_decrease[0] = row[0]
+            greatest_decrease[1] = net_change
         first_row += [1] 
         prev_net = int(row[1])
-        
-
-
         
     
 print ("Financial Analysis")
