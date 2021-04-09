@@ -16,26 +16,35 @@ with open(Budget_Data) as financial_data:
 
     months = 0
     net = 0
-    diff = 0
-    first_row = next(reader)
-    #diff_list = []
-    prev_net = int(first_row[1])
+    net_change = []
     greatest_increase = 0
     greatest_decrease = 0  
     
+    first_row = next(reader)
+    months += 1
+    net += int(first_row[1])
+    prev_net = first_row[1]
+
     for i, row in enumerate(reader):
         months += 1
-        net += int(row[1])     
-        net_change = int(first_row[i + 1]) - prev_net
-        average = net_change / 86
-        if prev_net > greatest_increase[1]:
-            greatest_increase[0] = row [0]
-            greatest_increase[1] = net_change
-        elif prev_net < greatest_decrease[1]:
-            greatest_decrease[0] = row[0]
-            greatest_decrease[1] = net_change
-        first_row += [1] 
+        net += int(row[1])
         prev_net = int(row[1])
+        diff = int(row[1]) - prev_net
+        net_change.append(diff)
+        print(diff)
+       
+        #average = net_change [] / 86
+      
+          
+        
+       # if prev_net > net_change[1]:
+           # greatest_increase[0] = row [0]
+            #greatest_increase[1] = net_change[1]
+       # elif net_change < greatest_decrease[1]:
+           # greatest_decrease[0] = row[0]
+           # greatest_decrease[1] = net_change[1]
+        #first_row += [1] 
+        
         
     
 print ("Financial Analysis")
@@ -43,8 +52,8 @@ print("------------------------")
 print (f"Total Months: {months}")
 print (f"Total: ${net}")
 print (f"Average Change: ${average}")
-print (f"Greatest Increase in Profits:{greatest}")
-print (f"Greatest Decrease in Profits:{least}")
+#print (f"Greatest Increase in Profits:{greatest}")
+#print (f"Greatest Decrease in Profits:{least}")
 print("------------------------")
 
 #Final_Analysis = zip(Date,TProfitLoss, PLAverage, Increase, Decrease)
