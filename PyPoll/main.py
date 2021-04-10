@@ -10,7 +10,6 @@ import csv # import csv
 
 Election_Data = os.path.join('Resources', 'Election_Data.csv') #CSV to import
 
-#candidates = ["Khan","Correy", "Li", "O'Tooley"]
 candidates = [] #Empty list to collect candidate names
 
 K_votes = 0 #hold variables for number of Votes per candidate
