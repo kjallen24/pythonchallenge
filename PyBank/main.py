@@ -10,33 +10,31 @@ import csv
 
 Budget_Data = os.path.join('Resources', 'Budget_Data.csv')
 
+months = 0
+net = 0
+net_change = []
+greatest_increase = 0
+greatest_decrease = 0  
+total_diff = 0
+
 with open(Budget_Data) as financial_data:
     reader = csv.reader(financial_data)
     header = next(reader)
-
-    months = 0
-    net = 0
-    net_change = []
-    greatest_increase = 0
-    greatest_decrease = 0  
     
     first_row = next(reader)
     months += 1
     net += int(first_row[1])
-    prev_net = first_row[1]
+    prev_net = int(first_row[1])
 
-    for i, row in enumerate(reader):
+    for row in reader:
         months += 1
         net += int(row[1])
+        diff = (int(row[1]) - prev_net
         prev_net = int(row[1])
-        diff = int(row[1]) - prev_net
+        #total_diff = diff + total_diff
         net_change.append(diff)
-        print(diff)
-       
-        #average = net_change [] / 86
+        average = diff / 86
       
-          
-        
        # if prev_net > net_change[1]:
            # greatest_increase[0] = row [0]
             #greatest_increase[1] = net_change[1]
