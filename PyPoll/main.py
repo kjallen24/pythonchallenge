@@ -33,9 +33,9 @@ with open(Election_Data) as election_results: # open Election csv
         vote_total += 1 # for each row add 1
 
         if str(row[2]) not in candidates: 
-            candidates.append(str(row[2])) # reads
+            candidates.append(str(row[2])) # reads each line for candidate name and adds string to candidates []
 
-        if candidates[0] in row[2]:
+        if candidates[0] in row[2]: # pulls each candidate name by pos. from list and counts vote
             K_votes += 1
         elif candidates[1] in row[2]:
             C_votes += 1
@@ -46,12 +46,12 @@ with open(Election_Data) as election_results: # open Election csv
         else:
             continue
         
-        Kvote_per = round(int(K_votes) / int(vote_total) * 100, 5)
+        Kvote_per = round(int(K_votes) / int(vote_total) * 100, 5) #calcs per of candidate vote, rounds to 5
         Cvote_per = round(int(C_votes) / int(vote_total) * 100, 5)
         Lvote_per = round(int(L_votes) / int(vote_total) * 100, 5)
         Ovote_per = round(int(O_votes) / int(vote_total) * 100, 5)
 
-        if (K_votes > C_votes) and (K_votes > L_votes) and (K_votes > O_votes):
+        if (K_votes > C_votes) and (K_votes > L_votes) and (K_votes > O_votes): #determines winner by comparing number of votes
             Winner = "Khan"
         elif (C_votes > K_votes) and (C_votes > L_votes) and (C_votes > O_votes):
             Winner = "Correy"
