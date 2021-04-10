@@ -10,12 +10,13 @@ import csv
 
 Budget_Data = os.path.join('Resources', 'Budget_Data.csv')
 
+Months = []
 months = 0
 net = 0
 net_change = []
-greatest_increase = 0
-greatest_decrease = 0  
-total_diff = 0
+netchange = 0
+increase = 0 
+decrease = 0
 
 with open(Budget_Data) as financial_data:
     reader = csv.reader(financial_data)
@@ -23,48 +24,50 @@ with open(Budget_Data) as financial_data:
     
     first_row = next(reader)
     months += 1
+    Months.append(months)
     net += int(first_row[1])
     prev_net = int(first_row[1])
 
     for row in reader:
         months += 1
+
         net += int(row[1])
-        diff = (int(row[1]) - prev_net
-        prev_net = int(row[1])
-        #total_diff = diff + total_diff
-        net_change.append(diff)
-        average = diff / 86
-      
-       # if prev_net > net_change[1]:
-           # greatest_increase[0] = row [0]
-            #greatest_increase[1] = net_change[1]
-       # elif net_change < greatest_decrease[1]:
-           # greatest_decrease[0] = row[0]
-           # greatest_decrease[1] = net_change[1]
-        #first_row += [1] 
+        prev_net = int(first_row[1])
         
-        
-    
+        if int(row[1]) > prev_net:
+            netchange -= int(row[1])
+            net_change.append(netchange)
+            increase = netchange
+        elif int(row[1]) < prev_net:
+            netchange +=  int(row[1])
+            net_change.append(netchange)
+            decrease = int(netchange)
+        else:
+            continue
+        Sum = round((sum(net_change)),4)
+            
+   
+            
 print ("Financial Analysis")
 print("------------------------")
 print (f"Total Months: {months}")
 print (f"Total: ${net}")
-print (f"Average Change: ${average}")
-#print (f"Greatest Increase in Profits:{greatest}")
-#print (f"Greatest Decrease in Profits:{least}")
+print (f"Average Change: $-{Sum/286}")
+print (f"Greatest Increase in Profits:{str(row[0])} ${int(row[1])}")
+print (f"Greatest Decrease in Profits:{str(row[0])} $-{decrease}")
 print("------------------------")
 
-#Final_Analysis = zip(Date,TProfitLoss, PLAverage, Increase, Decrease)
+Final_Analysis = zip(Months, net_change)
 
-# Set variable for output file
-#output_file = os.path.join("final_analysis.csv")
+#Set variable for output file
+output_file = os.path.join("final_budgetanalysis.csv")
 
 #  Open the output file
-#with open(output_file, "w", newline="") as datafile:
-    #writer = csv.writer(datafile)
+with open(output_file, "w", newline="") as datafile:
+    writer = csv.writer(datafile)
 
     # Write the header row
-    #writer.writerow(["Financial Analysis"])
+    writer.writerow(["Budget Analysis"])
 
     # Write in zipped rows
-    #writer.writerows(cleaned_csv)
+    writer.writerows(Final_Analysis)
